@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>练搭 · 健身助手</title>
+  <link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="features.css" />
+</head>
+<body>
+<main class="app-shell">
+  <header class="app-header">
+    <span class="clock" id="todayLabel">17:30</span><h1 id="pageTitle">首页</h1>
+    <button class="wechat-menu" id="notifyBtn" aria-label="小程序菜单"><b>•••</b><i></i><span>◉</span></button>
+  </header>
+
+  <section class="page active" data-page="home">
+    <article class="hero hero-fitness">
+      <div class="hero-copy"><h2>今天也要动起来 💪</h2><p>坚持训练，遇见更好的自己！</p></div>
+      <div class="hero-stats glass-panel">
+        <div class="editable-stat"><i class="orange">🔥</i><input id="todayBurnInput" type="number" min="0" max="5000" value="280" inputmode="numeric" aria-label="今日消耗千卡"><button class="stat-detail-link" id="openBurnHistory" type="button">今日消耗(千卡) ›</button></div>
+        <div class="editable-stat"><i>◷</i><input id="todayDurationInput" type="number" min="0" max="600" value="45" inputmode="numeric" aria-label="训练时长分钟"><button class="stat-detail-link" id="openDurationHistory" type="button">训练时长(分钟) ›</button></div>
+        <button class="checkin-stat" id="openCheckin" type="button"><i class="yellow">★</i><b><span id="trainingDays">6</span><small> 天</small></b><span>训练天数</span></button>
+      </div>
+    </article>
+
+    <article class="white-card calculator-card">
+      <div class="card-title"><h2><span class="title-icon">🔥</span> 热量计算器</h2><button id="calorieHelp" type="button">如何使用？</button></div>
+      <div class="calculator-grid">
+        <div class="calc-fields"><label><b>食物热量</b><input id="foodCalories" type="number" placeholder="每100克的热量"><span>千卡</span></label><label><b>食物重量</b><input id="foodWeight" type="number" placeholder="请输入重量"><span>克</span></label></div>
+        <div class="calc-result"><span>🍚</span><p>你已摄入</p><strong id="foodResult">0 千卡</strong><hr><small>约等于 <b id="riceBowls">0 碗米饭</b></small></div>
+      </div>
+      <button class="primary" id="foodCalculate">立即计算</button>
+    </article>
+
+    <div class="tool-grid white-card">
+      <button class="nav-shortcut" data-target="training"><i class="green">▣</i><span>训练计划</span></button><button class="nav-shortcut" data-target="exercise"><i>🏋</i><span>动作库</span></button><button class="nav-shortcut" data-target="diet"><i class="yellow">◉</i><span>饮食计划</span></button><button data-health-tool="bmi"><i class="blue">◈</i><span>BMI计算</span></button>
+      <button data-health-tool="bodyfat"><i class="orange">◎</i><span>体脂率</span></button><button data-health-tool="bmr"><i class="red">🔥</i><span>基础代谢</span></button><button data-health-tool="weight"><i class="purple">◈</i><span>体重管理</span></button><button><i class="blue">↻</i><span>单位换算</span></button>
+    </div>
+
+    <article class="white-card recommend-card"><div class="card-title"><h2>今日推荐</h2><button class="nav-shortcut plain" data-target="exercise">查看更多 ›</button></div><div class="recommend-row"><button><div class="mini-art">拉</div><b>背部强化</b><small>8个动作 · 22分钟</small><em>中级</em></button><button><div class="mini-art mint">推</div><b>胸肌塑形</b><small>7个动作 · 20分钟</small><em>初级</em></button><button><div class="mini-art orange-bg">蹲</div><b>腿部训练</b><small>8个动作 · 25分钟</small><em>中级</em></button></div></article>
+    <button class="diet-banner nav-shortcut" data-target="diet"><div><h3>一周健康饮食建议</h3><p>营养均衡，吃出好身材</p><span>去查看 ›</span></div></button>
+  </section>
+
+  <section class="page" data-page="training">
+    <article class="hero hero-fitness plan-hero"><div class="hero-copy"><h2>本周训练目标</h2><p>坚持训练，遇见更好的自己！</p></div><div class="hero-stats glass-panel"><div><i>▣</i><b>4<small> 次/周</small></b><span>目标频率</span></div><div><i class="yellow">◷</i><b>240<small> 分钟</small></b><span>预计时长</span></div><div><i class="orange">🔥</i><b>1800<small> 千卡</small></b><span>目标消耗</span></div></div></article>
+    <article class="white-card compact-card"><h2>选择训练部位</h2><div class="part-pills"><button class="active">胸</button><button>背</button><button>肩</button><button>腿</button><button>手臂</button><button>核心</button><button>臀</button></div></article>
+    <article class="white-card compact-card"><h2>智能生成计划</h2><div class="goal-pills" id="goalSlider"><button class="goal-card selected" data-goal="gain"><i>💪</i><b>增肌</b><small>增加肌肉量</small></button><button class="goal-card" data-goal="lose"><i>🔥</i><b>减脂</b><small>燃脂塑形</small></button><button class="goal-card" data-goal="keep"><i>🏆</i><b>塑形</b><small>线条雕刻</small></button><button class="goal-card" data-goal="keep"><i>⭐</i><b>新手入门</b><small>循序渐进</small></button></div></article>
+    <div class="segmented" id="trainingTabs"><button class="active" data-panel="today">今日计划</button><button data-panel="gym">健身房</button><button data-panel="homework">居家训练</button></div>
+    <article class="white-card capacity-card"><div class="card-title"><div><h2>单动作容量追踪</h2><p>分别比较每个动作：重量 × 次数 × 组数</p></div><button id="capacityHelp">计算说明 ?</button></div><div class="capacity-column-head"><span>动作</span><span>上次</span><span>本次</span><span>下次目标</span></div><div class="exercise-capacity-list" id="exerciseCapacityList"></div><div class="capacity-advice" id="capacityAdvice">完成动作后，系统会单独生成该动作的下一次进阶目标。</div></article>
+    <div class="training-panel active" data-training="today"><article class="white-card workout-table"><div class="card-title"><h2 id="workoutDayTitle">今日计划 · 胸部训练</h2><button class="plain">编辑计划</button></div><div class="volume-strip"><span>本次容量 <b id="totalVolume">0 kg</b></span><span>动作进度 <b id="exerciseProgress">0 / 4</b></span><span>预计消耗 <b id="workoutCalories">280 kcal</b></span></div><div id="workoutList" class="workout-list"></div></article></div>
+    <div class="training-panel" data-training="gym"><article class="white-card"><h2>健身房分化计划</h2><div class="plan-grid" id="gymPlans"></div></article></div>
+    <div class="training-panel" data-training="homework"><article class="white-card"><h2>选择居家器械</h2><div class="equipment-choice"><button class="selected">徒手</button><button>一对哑铃</button><button>弹力带</button></div><div class="plan-grid" id="homePlans"></div></article></div>
+    <article class="white-card week-card"><h2>本周训练安排</h2><div class="week-row"><button class="done selected-demo" data-day="0">周一<b>胸部</b></button><button class="done" data-day="1">周二<b>背部</b></button><button data-day="2">周三<b>恢复</b></button><button class="done" data-day="3">周四<b>腿部</b></button><button class="done" data-day="4">周五<b>肩部</b></button><button class="done" data-day="5">周六<b>手臂</b></button><button data-day="6">周日<b>休息</b></button></div><button class="primary">一键生成计划<small>根据目标和偏好，智能生成专属训练计划</small></button></article>
+  </section>
+
+  <section class="page" data-page="exercise">
+    <div class="search-wrap"><span>⌕</span><input id="exerciseSearch" placeholder="搜索动作名称"></div>
+    <div class="type-row"><button class="active">全部</button><button>新手友好</button><button>器械</button><button>徒手</button><button>拉伸</button></div>
+    <div class="exercise-layout white-card">
+      <aside id="exerciseFilters"><button class="active" data-filter="背">背</button><button data-filter="胸">胸</button><button data-filter="肩">肩</button><button data-filter="腿">腿</button><button data-filter="核心">核心</button><button data-filter="手臂">手臂</button><button data-filter="全部">全部</button></aside>
+      <div class="exercise-main"><div class="subfilters"><button class="active">全部</button><button>上部</button><button>下部</button><button>辅助肌</button></div><div id="exerciseList" class="exercise-list"></div></div>
+    </div><button class="float-filter" id="equipmentBtn">▽<span>筛选</span></button><span id="exerciseCount" hidden>0</span>
+  </section>
+
+  <section class="page" data-page="diet">
+    <article class="diet-top"><div><h2>科学吃，练得更好 🌿</h2><p>营养均衡，助力训练效果</p></div></article>
+    <div class="segmented diet-tabs" id="dietTabs"><button class="active" data-diet="today">减脂人群</button><button data-diet="gain">增肌人群</button><button data-diet="keep">维持体重</button></div>
+    <article class="white-card nutrition-card"><h2>今日营养目标 <small>?</small></h2><div class="nutrition-layout"><div class="calorie-ring"><span>目标热量</span><b>2080</b><small>千卡</small></div><div class="macro-grid"><div><i></i><b>蛋白质</b><strong>92 / 135g</strong></div><div><i class="yellow-bar"></i><b>碳水化合物</b><strong>168 / 245g</strong></div><div><i class="orange-bar"></i><b>脂肪</b><strong>43 / 60g</strong></div></div></div></article>
+    <article class="white-card meal-plan"><h2 id="mealDayTitle">周一食谱计划</h2><div class="day-row"><button class="active" data-day="0">周一<small>今天</small></button><button data-day="1">周二<small>06/03</small></button><button data-day="2">周三<small>06/04</small></button><button data-day="3">周四<small>06/05</small></button><button data-day="4">周五<small>06/06</small></button><button data-day="5">周六<small>06/07</small></button><button data-day="6">周日<small>06/08</small></button></div><div id="mealList" class="meal-list"></div></article>
+    <article class="white-card snack-card"><div><b>加餐 & 饮水建议</b><p>健康加餐，控制饥饿，多喝水</p></div><div><span>🥛</span><b>酸奶 + 坚果</b><em>150 千卡</em></div><div><span>💧</span><b>饮水目标</b><em>2000 ml/天</em></div></article>
+    <div class="diet-actions"><button class="primary">生成本周食谱 ↻</button><button>替换菜单</button></div>
+  </section>
+
+  <section class="page" data-page="profile">
+    <article class="profile-hero hero-fitness"><div class="profile-intro"><div class="avatar">练</div><div><h2>健身小达人 ✎</h2><p>自律给我自由，汗水见证成长！</p><span>👑 健身新手</span></div></div><div class="hero-stats glass-panel"><div><i>⚖</i><b id="profileWeight">72.0<small> kg</small></b><span>当前体重</span></div><div><i class="orange">🔥</i><b>12<small> 天</small></b><span>连续打卡</span></div><div><i>✓</i><b>48<small> 次</small></b><span>完成训练</span></div></div></article>
+    <article class="white-card health-card"><div class="card-title"><h2>♣ 我的健康数据</h2><button data-open="profileModal">查看详情 ›</button></div><div class="health-grid"><div><span>BMI</span><b>23.6</b><em>健康</em></div><div><span>体脂率</span><b>18.6<small>%</small></b><em>健康</em></div><div><span>基础代谢</span><b id="targetCalories">1680</b><small>千卡/天</small></div><div><span>目标体重</span><b>68.0<small>kg</small></b><small>目标：-4.0kg</small></div></div></article>
+    <article class="streak-card"><span>🗓</span><div><h3>本月已坚持 <b>12</b> 天</h3><p>继续完成你的目标，离更好的自己更近一步！</p><i></i></div><button>查看目标</button></article>
+    <div class="settings-grid"><article class="white-card settings-list"><button><span>▣</span><b>训练记录</b><i>›</i></button><button><span>🍴</span><b>饮食记录</b><i>›</i></button><button><span>★</span><b>收藏动作</b><i>›</i></button><button><span>⚖</span><b>体重管理</b><i>›</i></button></article><article class="white-card settings-list"><button><span>♛</span><b>我的计划</b><i>›</i></button><button><span>◎</span><b>目标管理</b><i>›</i></button><button><span>🔔</span><b>消息通知</b><i>›</i></button><button><span>🛡</span><b>隐私与帮助</b><i>›</i></button></article></div>
+    <p class="disclaimer">本工具提供健康管理参考，不构成医疗诊断或治疗建议。</p>
+  </section>
+
+  <nav class="bottom-nav"><button class="active" data-target="home"><span>⌂</span><b>首页</b></button><button data-target="training"><span>▣</span><b>计划</b></button><button data-target="exercise"><span>🏋</span><b>动作</b></button><button data-target="diet"><span>♨</span><b>饮食</b></button><button data-target="profile"><span>♟</span><b>我的</b></button></nav>
+</main>
+
+<dialog id="profileModal" class="modal"><form method="dialog" id="profileForm"><div class="modal-head"><div><span>生成你的专属方案</span><h2>基础资料</h2></div><button value="cancel">×</button></div><label>年龄<input id="ageInput" type="number" min="14" max="55" value="28" required><small>适用范围 14–55 岁</small></label><div class="two-cols"><label>身高（cm）<input id="heightInput" type="number" min="130" max="220" value="175" required></label><label>体重（kg）<input id="weightInput" type="number" min="35" max="250" value="72" required></label></div><label>性别<select id="sexInput"><option value="male">男</option><option value="female">女</option></select></label><label>日常活动量<select id="activityInput"><option value="1.2">久坐为主</option><option value="1.375" selected>轻度活动</option><option value="1.55">中度活动</option><option value="1.725">高度活动</option></select></label><label class="check"><input id="riskInput" type="checkbox"><span>存在伤病、慢性病、孕期或运动时明显不适</span></label><div class="age-note" id="ageNote">18–39 岁：采用常规新手训练与热量模板。</div><button class="primary" value="default" id="calculateBtn">保存并计算方案</button></form></dialog>
+<dialog id="exerciseModal" class="modal exercise-modal"><div id="exerciseDetail"></div><button class="primary" id="closeExercise">知道了</button></dialog>
+<dialog id="featureModal" class="modal feature-modal"><div class="modal-head"><div><span>功能演示</span><h2 id="featureTitle">功能详情</h2></div><button id="closeFeature">×</button></div><div id="featureContent"></div><button class="primary" id="confirmFeature">完成</button></dialog><div class="toast" id="toast">已保存</div>
+<dialog id="healthModal" class="modal health-modal"><form id="healthToolForm"><div class="modal-head"><div><span>健康测算工具</span><h2 id="healthToolTitle">BMI 计算</h2></div><button type="button" id="closeHealth">×</button></div><div id="healthToolFields"></div><button type="submit" class="primary">立即计算</button><div id="healthToolResult" class="health-result" aria-live="polite"></div></form></dialog>
+<dialog id="checkinModal" class="modal checkin-modal"><div class="modal-head"><div><span>每日训练记录</span><h2>训练签到</h2></div><button type="button" id="closeCheckin">×</button></div><div class="checkin-today"><span>📅</span><div><small id="checkinDate">今天</small><b id="checkinStatus">今天还未签到</b><p>完成一次训练后，点击下方按钮记录这一天。</p></div></div><div class="calendar-head"><button type="button" id="calendarPrev">‹</button><b id="calendarTitle">本月</b><button type="button" id="calendarNext">›</button></div><div class="calendar-week"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="checkin-calendar" id="checkinCalendar"></div><div class="calendar-legend"><span><i class="checked"></i>已签到</span><span><i class="missed"></i>未签到</span><span><i></i>未来日期</span></div><div class="checkin-total"><span>累计训练天数</span><strong><b id="checkinTotal">6</b> 天</strong></div><button class="primary" type="button" id="checkinButton">今日签到</button></dialog>
+<dialog id="statHistoryModal" class="modal stat-history-modal"><div class="modal-head"><div><span>训练数据累计</span><h2 id="statHistoryTitle">消耗记录</h2></div><button type="button" id="closeStatHistory">×</button></div><div class="history-summary"><div><span>本周累计</span><strong id="weekStatTotal">0</strong><small id="weekStatUnit">千卡</small></div><div><span>本月累计</span><strong id="monthStatTotal">0</strong><small id="monthStatUnit">千卡</small></div></div><h3 class="history-subtitle">本周每日记录</h3><div class="history-bars" id="statHistoryBars"></div><div class="history-list" id="statHistoryList"></div></dialog>
+<script src="exercise-data.js"></script><script src="app.js"></script>
+</body></html>

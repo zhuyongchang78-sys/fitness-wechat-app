@@ -1,0 +1,28 @@
+# Dependencies and builds
+node_modules/
+dist/
+build/
+.cache/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+project.private.config.json
+private.config.json
+
+# Imported raw datasets and licensed media
+*.zip
+data/raw/
+data/images/
+data/videos/
+data/**/*.gif
+prototype/assets/exercise-media/
+prototype/exercise-data.js
+
+# Temporary and system files
+tmp/
+temp/
+*.log
+.DS_Store
+Thumbs.db
