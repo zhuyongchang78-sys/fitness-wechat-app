@@ -32,3 +32,7 @@
 公开原型另行接入了第一批 18 个 Wikimedia Commons 健身 GIF。每个动作详情均展示作者、许可、原始文件页面以及是否修改，完整素材清单见 `LICENSES/wikimedia-commons-exercise-media.md`。
 
 其中 3 个常用背部动作已保存在项目内，其余动作暂时通过 Wikimedia Commons 官方地址加载，后续可以在保留相同署名字段的前提下继续补充或替换。
+
+## 本地私人动作库
+
+如仅在本人电脑上使用用户提供的完整动作压缩包，可运行 `scripts/import-local-exercise-library.ps1`。脚本会把 1324 个动作、缩略图和 GIF 写入已被 Git 忽略的本地目录；这些媒体不会随 GitHub Pages 发布。动作列表每次加载 60 条，避免一次渲染全部素材导致页面卡顿。
